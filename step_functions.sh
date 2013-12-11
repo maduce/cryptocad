@@ -13,30 +13,7 @@ awk '/DATA/,/Failed/' $file |grep CARTESIAN_POINT | sed 's/[^ ]* //' | sed 's/[^
 
 }
 
-function Coordinate_x_Change() {
-local filetemp=$1
-local string1="CARTESIAN_POINT" 
-local output=$(echo output.step)
-rm -f $output
-while read line           
-do           
-    # echo $line |awk '{print $3}'           
-    local string_temp=$(echo $line |awk '{print $3}');
-    local scramble_factor=$(echo $line |awk '{print $1}' |cut -d "#" -f 2); #adding row number to x
-    local col7=$(echo $line |awk '{print $7}' | cut -d "," -f 1)
-    if [[ "$string_temp" == $string1 ]]
-      then
-          #echo $col7
-          #echo $(echo $col7 + $scramble_factor | bc)
-          echo $line |sed "s/$col7/$(echo $col7 + $scramble_factor | bc)/g" >>$output
-      else
-         echo $line >> $output
-    fi
-
-done <$filetemp
-}
-
-function Coordinate_xyz_Scamble() {
+function Coordinate_xyz_Scramble() {
 
 local filetemp=$1
 local modulo_factor=$2
@@ -134,4 +111,6 @@ esac
 done <$filetemp
 }
 
-Coordinate_xyz_unScamble $1 3
+## test. You can change 3 to any integer you desire.
+#Coordinate_xyz_Scramble $1 3
+#Coordinate_xyz_unScramble $1 3
