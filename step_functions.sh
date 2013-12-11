@@ -62,7 +62,7 @@ esac
 done <$filetemp
 }
 
-function Coordinate_xyz_unScamble() {
+function Coordinate_xyz_unScramble() {
 
 local filetemp=$1
 local modulo_factor=$2
