@@ -18,7 +18,7 @@ function Coordinate_Scramble() {
 local scrambleopt=$1
 local modulo_factor=$2
 local filetemp=$3
-local row_total=$(graball_Coordinate_Points $filetemp |wc -l)
+local row_total=$(cat $filetemp |wc -l)
 local string1="CARTESIAN_POINT" 
 rm -f $output
 
